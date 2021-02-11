@@ -1,11 +1,32 @@
-import React, { useState } from "react";
-// import * as BooksAPI from './BooksAPI'
+import React, { useState, useEffect } from "react";
+import * as BooksAPI from "./BooksAPI";
 import "./App.css";
 import OpenSearch from "./OpenSearch";
 import Search from "./Search";
 import Shelfs from "./Shelfs";
 
 function BooksApp() {
+  const [didMount, setDidMount] = useState(false);
+  const [booksObject, handleBooks] = useState([{}]);
+  useEffect(() => {
+    BooksAPI.getAll().then((books) => {
+      handleBooks((prevState) => ({
+        ...prevState,
+        currentlyReading: books.filter(
+          (book) => book.shelf === "currentlyReading"
+        ),
+      }));
+      handleBooks((prevState) => ({
+        ...prevState,
+        wantToRead: books.filter((book) => book.shelf === "wantToRead"),
+      }));
+      handleBooks((prevState) => ({
+        ...prevState,
+        read: books.filter((book) => book.shelf === "read"),
+      }));
+      setDidMount(true);
+    });
+  }, []);
   /**
    * TODO: Instead of using this state variable to keep track of which page
    * we're on, use the URL in the browser's address bar. This will ensure that
@@ -23,7 +44,7 @@ function BooksApp() {
             <h1>MyReads</h1>
           </div>
           <div className="list-books-content">
-            <Shelfs />
+            {didMount && <Shelfs booksObject={booksObject} />}
           </div>
           <OpenSearch handleSearchPage={handleSearchPage} />
         </div>
