@@ -15,7 +15,6 @@ function Book(props) {
           }}
         ></div>
         <ShelfsControl
-          bookID={props.bookID}
           shelf={props.shelf}
           book={props.book}
           updateShelf={props.updateShelf}
@@ -30,10 +29,9 @@ function Book(props) {
 Book.propTypes = {
   backgroundURL: PropTypes.string.isRequired,
   bookTitle: PropTypes.string.isRequired,
-  bookAuthor: PropTypes.array.isRequired,
+  bookAuthor: PropTypes.array,
   updateShelf: PropTypes.func.isRequired,
-  bookID: PropTypes.string.isRequired,
-  shelf: PropTypes.string.isRequired,
+  shelf: PropTypes.string,
   book: PropTypes.object.isRequired,
 };
 
