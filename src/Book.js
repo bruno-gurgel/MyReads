@@ -1,5 +1,6 @@
 import React from "react";
 import ShelfsControl from "./ShelfsControl";
+import PropTypes from "prop-types";
 
 function Book(props) {
   return (
@@ -25,5 +26,15 @@ function Book(props) {
     </div>
   );
 }
+
+Book.propTypes = {
+  backgroundURL: PropTypes.string.isRequired,
+  bookTitle: PropTypes.string.isRequired,
+  bookAuthor: PropTypes.array.isRequired,
+  updateShelf: PropTypes.func.isRequired,
+  bookID: PropTypes.string.isRequired,
+  shelf: PropTypes.string.isRequired,
+  book: PropTypes.object.isRequired,
+};
 
 export default Book;
