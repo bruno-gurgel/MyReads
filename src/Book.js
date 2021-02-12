@@ -13,7 +13,12 @@ function Book(props) {
             backgroundImage: `url(${props.backgroundURL})`,
           }}
         ></div>
-        <ShelfsControl />
+        <ShelfsControl
+          bookID={props.bookID}
+          shelf={props.shelf}
+          book={props.book}
+          updateShelf={props.updateShelf}
+        />
       </div>
       <div className="book-title">{props.bookTitle}</div>
       <div className="book-authors">{props.bookAuthor}</div>
