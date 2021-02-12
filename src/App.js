@@ -7,26 +7,14 @@ import Shelfs from "./Shelfs";
 
 function BooksApp() {
   const [didMount, setDidMount] = useState(false);
-  const [booksObject, handleBooks] = useState([{}]);
+  const [booksArray, handleBooks] = useState([]);
   useEffect(() => {
     BooksAPI.getAll().then((books) => {
-      handleBooks((prevState) => ({
-        ...prevState,
-        currentlyReading: books.filter(
-          (book) => book.shelf === "currentlyReading"
-        ),
-      }));
-      handleBooks((prevState) => ({
-        ...prevState,
-        wantToRead: books.filter((book) => book.shelf === "wantToRead"),
-      }));
-      handleBooks((prevState) => ({
-        ...prevState,
-        read: books.filter((book) => book.shelf === "read"),
-      }));
+      handleBooks(books);
       setDidMount(true);
     });
   }, []);
+
   /**
    * TODO: Instead of using this state variable to keep track of which page
    * we're on, use the URL in the browser's address bar. This will ensure that
@@ -44,7 +32,9 @@ function BooksApp() {
             <h1>MyReads</h1>
           </div>
           <div className="list-books-content">
-            {didMount && <Shelfs booksObject={booksObject} />}
+            {didMount && (
+              <Shelfs booksArray={booksArray} updateShelf={updateBookShelf} />
+            )}
           </div>
           <OpenSearch handleSearchPage={handleSearchPage} />
         </div>
