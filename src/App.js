@@ -4,6 +4,7 @@ import "./App.css";
 import OpenSearch from "./OpenSearch";
 import Search from "./Search";
 import Shelfs from "./Shelfs";
+import { Route } from "react-router-dom";
 
 function BooksApp() {
   const [didMount, setDidMount] = useState(false);
@@ -28,30 +29,31 @@ function BooksApp() {
     );
   };
 
-  /**
-   * TODO: Instead of using this state variable to keep track of which page
-   * we're on, use the URL in the browser's address bar. This will ensure that
-   * users can use the browser's back and forward buttons to navigate between
-   * pages, as well as provide a good URL they can bookmark and share.
-   */
-  const [showSearchPage, handleSearchPage] = useState(false);
   return (
     <div className="app">
-      {showSearchPage ? (
-        <Search handleSearchPage={handleSearchPage} />
-      ) : (
-        <div className="list-books">
-          <div className="list-books-title">
-            <h1>MyReads</h1>
+      <Route
+        path="/search"
+        render={() => (
+          <Search booksArray={booksArray} updateShelf={updateBookShelf} />
+        )}
+      />
+      <Route
+        exact
+        path="/"
+        render={() => (
+          <div className="list-books">
+            <div className="list-books-title">
+              <h1>MyReads</h1>
+            </div>
+            <div className="list-books-content">
+              {didMount && (
+                <Shelfs booksArray={booksArray} updateShelf={updateBookShelf} />
+              )}
+            </div>
+            <OpenSearch />
           </div>
-          <div className="list-books-content">
-            {didMount && (
-              <Shelfs booksArray={booksArray} updateShelf={updateBookShelf} />
-            )}
-          </div>
-          <OpenSearch handleSearchPage={handleSearchPage} />
-        </div>
-      )}
+        )}
+      />
     </div>
   );
 }
