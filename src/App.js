@@ -15,6 +15,19 @@ function BooksApp() {
     });
   }, []);
 
+  const updateBookShelf = async (bookToUpdate, shelfToUpdate) => {
+    await BooksAPI.update(bookToUpdate, shelfToUpdate).then(
+      async (updatedShelf) => {
+        const changeToArray = Object.values(updatedShelf).flat();
+        const booksInfoArray = await Promise.all(
+          changeToArray.map((bookID) => BooksAPI.get(bookID))
+        );
+        handleBooks(booksInfoArray);
+        setDidMount(true);
+      }
+    );
+  };
+
   /**
    * TODO: Instead of using this state variable to keep track of which page
    * we're on, use the URL in the browser's address bar. This will ensure that
