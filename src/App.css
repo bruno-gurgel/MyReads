@@ -47,7 +47,6 @@ body,
 .bookshelf-title {
   color: hsl(49, 100%, 50%);
   border-bottom: 1px solid #dedede;
-  text-align: center;
 }
 
 .bookshelf-books {
