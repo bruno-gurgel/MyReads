@@ -1,7 +1,6 @@
 import React from "react";
 import Book from "./Book";
-
-//import * as BooksAPI from "./BooksAPI";
+import PropTypes from "prop-types";
 
 function Shelfs(props) {
   return (
@@ -78,5 +77,10 @@ function Shelfs(props) {
     </div>
   );
 }
+
+Shelfs.propTypes = {
+  booksArray: PropTypes.array.isRequired,
+  updateShelf: PropTypes.func.isRequired,
+};
 
 export default Shelfs;
