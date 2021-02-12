@@ -1,14 +1,12 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-function OpenSearch(props) {
+function OpenSearch() {
   return (
     <div className="open-search">
-      <button
-        onClick={() => props.handleSearchPage(true)}
-        // onClick={() => this.setState({ showSearchPage: true })}
-      >
+      <Link to="/search" className="open-search-button">
         Add a book
-      </button>
+      </Link>
     </div>
   );
 }
