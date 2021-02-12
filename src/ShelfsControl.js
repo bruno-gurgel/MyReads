@@ -1,16 +1,51 @@
-import React from "react";
+import React, { useState } from "react";
 
-function ShelfsControl() {
+function ShelfsControl(props) {
+  const [selectedItem, updateSelectedItem] = useState(props.shelf);
+  const [options] = useState([
+    {
+      name: "Move to...",
+      value: null,
+      disabled: true,
+    },
+    {
+      name: "Currently Reading",
+      value: "currentlyReading",
+      disabled: false,
+    },
+    {
+      name: "Want to Read",
+      value: "wantToRead",
+      disabled: false,
+    },
+    {
+      name: "Read",
+      value: "read",
+      disabled: false,
+    },
+    {
+      name: "None",
+      value: "none",
+      disabled: false,
+    },
+  ]);
+  const handleShelfControl = (event) => {
+    const shelf = event.target.value;
+    const book = props.book;
+
+    updateSelectedItem(shelf);
+
+    props.updateShelf(book, shelf);
+  };
+
   return (
     <div className="book-shelf-changer">
-      <select>
-        <option value="move" disabled>
-          Move to...
-        </option>
-        <option value="currentlyReading">Currently Reading</option>
-        <option value="wantToRead">Want to Read</option>
-        <option value="read">Read</option>
-        <option value="none">None</option>
+      <select onChange={handleShelfControl} value={selectedItem}>
+        {options.map((option, index) => (
+          <option key={index} value={option.value} disabled={option.disabled}>
+            {option.name}
+          </option>
+        ))}
       </select>
     </div>
   );
