@@ -41,7 +41,7 @@ function ShelfsControl(props) {
 
   return (
     <div className="book-shelf-changer">
-      <select onChange={handleShelfControl} value={selectedItem}>
+      <select onChange={handleShelfControl} value={selectedItem || "none"}>
         {options.map((option, index) => (
           <option key={index} value={option.value} disabled={option.disabled}>
             {option.name}
@@ -54,7 +54,7 @@ function ShelfsControl(props) {
 
 ShelfsControl.propTypes = {
   book: PropTypes.object.isRequired,
-  shelf: PropTypes.string.isRequired,
+  shelf: PropTypes.string,
   updateShelf: PropTypes.func.isRequired,
 };
 
