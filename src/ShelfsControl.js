@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 
 function ShelfsControl(props) {
   const [selectedItem, updateSelectedItem] = useState(props.shelf);
@@ -50,5 +51,11 @@ function ShelfsControl(props) {
     </div>
   );
 }
+
+ShelfsControl.propTypes = {
+  book: PropTypes.object.isRequired,
+  shelf: PropTypes.string.isRequired,
+  updateShelf: PropTypes.func.isRequired,
+};
 
 export default ShelfsControl;
