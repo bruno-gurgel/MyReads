@@ -39,7 +39,6 @@ function Shelfs(props) {
                       backgroundURL={book.imageLinks.thumbnail}
                       bookTitle={book.title}
                       bookAuthor={book.authors}
-                      bookID={book.id}
                       shelf={book.shelf}
                       book={book}
                       updateShelf={props.updateShelf}
@@ -62,7 +61,6 @@ function Shelfs(props) {
                       backgroundURL={book.imageLinks.thumbnail}
                       bookTitle={book.title}
                       bookAuthor={book.authors}
-                      bookID={book.id}
                       shelf={book.shelf}
                       book={book}
                       updateShelf={props.updateShelf}
