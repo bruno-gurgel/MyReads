@@ -7,17 +7,28 @@ import * as BooksAPI from "./BooksAPI";
 function Search(props) {
   const [query, updateQuery] = useState("");
   const [booksResults, updateBooksResults] = useState([]);
+  const [results, updateResults] = useState(true);
 
   const handleQuery = (event) => {
-    updateQuery(event.target.value);
+    const input = event.target.value;
+    updateQuery(input);
 
-    try {
-      BooksAPI.search(query).then((searchResults) =>
-        updateBooksResults(searchResults)
-      );
-    } catch (error) {
-      console.log(error);
+    if (!input) {
+      updateBooksResults([]);
+      updateResults(false);
+    } else {
+      BooksAPI.search(query).then((searchResults) => {
+        searchResults?.length > 0
+          ? updateBooksResults(searchResults) && updateResults(true)
+          : updateBooksResults([]) && updateResults(false);
+      });
     }
+  };
+
+  const checkShelf = (book) => {
+    return (
+      props.booksArray?.find((item) => item.id === book.id)?.shelf ?? "none"
+    );
   };
 
   return (
@@ -37,30 +48,30 @@ function Search(props) {
       </div>
       <div className="search-books-results">
         <ol className="books-grid">
-          {query && booksResults && !booksResults.error ? (
-            booksResults.map((book) => (
-              <li key={book.id}>
-                <Book
-                  backgroundURL={
-                    book.imageLinks ? book.imageLinks.thumbnail : ""
-                  }
-                  bookTitle={book.title}
-                  bookAuthor={book.authors}
-                  shelf={book.shelf}
-                  book={book}
-                  updateShelf={props.updateShelf}
-                />
-              </li>
-            ))
-          ) : query && booksResults ? (
-            <p className="error-text">
-              There are no results for your query:
-              <span className="error-span">"{query}"</span>
-            </p>
-          ) : (
-            ""
-          )}
+          {query &&
+            booksResults?.map((book) => {
+              const bookShelf = checkShelf(book);
+              return (
+                <li key={book.id}>
+                  <Book
+                    backgroundURL={
+                      book.imageLinks ? book.imageLinks.thumbnail : ""
+                    }
+                    bookTitle={book.title}
+                    bookAuthor={book.authors || ""}
+                    shelf={bookShelf}
+                    book={book}
+                    updateShelf={props.updateShelf}
+                  />
+                </li>
+              );
+            })}
         </ol>
+        {!results && query && (
+          <h1 className="search-book-error">
+            Search did not return any books.
+          </h1>
+        )}
       </div>
     </div>
   );
