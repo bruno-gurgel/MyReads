@@ -205,12 +205,7 @@ button:active {
   font-size: 0.8em;
 }
 
-.error-text {
-  color: #fff;
-  font-size: 3rem;
-}
-
-.error-span {
-  font-style: italic;
+.search-book-error {
   color: hsl(60, 100%, 60%);
+  text-align: center;
 }
