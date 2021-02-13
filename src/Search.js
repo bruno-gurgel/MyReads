@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import Book from "./Book";
@@ -9,11 +9,8 @@ function Search(props) {
   const [booksResults, updateBooksResults] = useState([]);
   const [results, updateResults] = useState(true);
 
-  const handleQuery = (event) => {
-    const input = event.target.value;
-    updateQuery(input);
-
-    if (!input) {
+  useEffect(() => {
+    if (!query) {
       updateBooksResults([]);
       updateResults(false);
     } else {
@@ -23,7 +20,7 @@ function Search(props) {
           : updateBooksResults([]) && updateResults(false);
       });
     }
-  };
+  }, [query]);
 
   const checkShelf = (book) => {
     return (
@@ -42,7 +39,7 @@ function Search(props) {
             type="text"
             placeholder="Search by title or author"
             value={query}
-            onChange={(event) => handleQuery(event)}
+            onChange={(event) => updateQuery(event.target.value)}
           />
         </div>
       </div>
