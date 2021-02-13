@@ -6,18 +6,19 @@ import * as BooksAPI from "./BooksAPI";
 
 function Search(props) {
   const [query, updateQuery] = useState("");
-  const [booksResults, updateBooksResults] = useState([]);
-  const [results, updateResults] = useState(true);
+  const [booksResultsArray, updateBooksResultsArray] = useState([]);
+  const [areThereResults, updateAreThereResults] = useState(true);
 
   useEffect(() => {
     if (!query) {
-      updateBooksResults([]);
-      updateResults(false);
+      updateBooksResultsArray([]);
+      updateAreThereResults(false);
     } else {
       BooksAPI.search(query).then((searchResults) => {
         searchResults?.length > 0
-          ? updateBooksResults(searchResults) && updateResults(true)
-          : updateBooksResults([]) && updateResults(false);
+          ? updateBooksResultsArray(searchResults) &&
+            updateAreThereResults(true)
+          : updateBooksResultsArray([]) && updateAreThereResults(false);
       });
     }
   }, [query]);
@@ -46,7 +47,7 @@ function Search(props) {
       <div className="search-books-results">
         <ol className="books-grid">
           {query &&
-            booksResults?.map((book) => {
+            booksResultsArray?.map((book) => {
               const bookShelf = checkShelf(book);
               return (
                 <li key={book.id}>
@@ -64,7 +65,7 @@ function Search(props) {
               );
             })}
         </ol>
-        {!results && query && (
+        {!areThereResults && query && (
           <h1 className="search-book-error">
             Search did not return any books.
           </h1>
@@ -76,6 +77,7 @@ function Search(props) {
 
 Search.propTypes = {
   booksArray: PropTypes.array.isRequired,
+  updateShelf: PropTypes.func.isRequired,
 };
 
 export default Search;
