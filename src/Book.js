@@ -29,9 +29,12 @@ function Book(props) {
 Book.propTypes = {
   backgroundURL: PropTypes.string.isRequired,
   bookTitle: PropTypes.string.isRequired,
-  bookAuthor: PropTypes.array,
+  bookAuthor: PropTypes.oneOfType([
+    PropTypes.array.isRequired,
+    PropTypes.string.isRequired,
+  ]),
   updateShelf: PropTypes.func.isRequired,
-  shelf: PropTypes.string,
+  shelf: PropTypes.string.isRequired,
   book: PropTypes.object.isRequired,
 };
 
