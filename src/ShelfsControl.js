@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 
 function ShelfsControl(props) {
-  const [selectedItem, updateSelectedItem] = useState(props.shelf);
   const [options] = useState([
     {
       name: "Move to...",
@@ -34,14 +33,12 @@ function ShelfsControl(props) {
     const shelf = event.target.value;
     const book = props.book;
 
-    updateSelectedItem(shelf);
-
     props.updateShelf(book, shelf);
   };
 
   return (
     <div className="book-shelf-changer">
-      <select onChange={handleShelfControl} value={selectedItem || "none"}>
+      <select onChange={handleShelfControl} value={props.shelf}>
         {options.map((option, index) => (
           <option key={index} value={option.value} disabled={option.disabled}>
             {option.name}
