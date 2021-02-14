@@ -14,7 +14,9 @@ function Shelfs(props) {
                 book.shelf === "currentlyReading" && (
                   <li key={book.id}>
                     <Book
-                      backgroundURL={book.imageLinks.thumbnail}
+                      backgroundURL={
+                        book.imageLinks ? book.imageLinks.thumbnail : ""
+                      }
                       bookTitle={book.title}
                       bookAuthor={book.authors}
                       shelf={book.shelf}
@@ -36,7 +38,9 @@ function Shelfs(props) {
                 book.shelf === "wantToRead" && (
                   <li key={book.id}>
                     <Book
-                      backgroundURL={book.imageLinks.thumbnail}
+                      backgroundURL={
+                        book.imageLinks ? book.imageLinks.thumbnail : ""
+                      }
                       bookTitle={book.title}
                       bookAuthor={book.authors}
                       shelf={book.shelf}
@@ -58,7 +62,9 @@ function Shelfs(props) {
                 book.shelf === "read" && (
                   <li key={book.id}>
                     <Book
-                      backgroundURL={book.imageLinks.thumbnail}
+                      backgroundURL={
+                        book.imageLinks ? book.imageLinks.thumbnail : ""
+                      }
                       bookTitle={book.title}
                       bookAuthor={book.authors}
                       shelf={book.shelf}
