@@ -15,10 +15,13 @@ function Search(props) {
       updateAreThereResults(false);
     } else {
       BooksAPI.search(query).then((searchResults) => {
-        searchResults?.length > 0
-          ? updateBooksResultsArray(searchResults) &&
-            updateAreThereResults(true)
-          : updateBooksResultsArray([]) && updateAreThereResults(false);
+        if (searchResults?.length > 0) {
+          updateBooksResultsArray(searchResults);
+          updateAreThereResults(true);
+        } else {
+          updateBooksResultsArray([]);
+          updateAreThereResults(false);
+        }
       });
     }
   }, [query]);
