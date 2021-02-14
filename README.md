@@ -19,6 +19,8 @@ You can find information about the backend server (src/BooksAPI.js) and the star
 - Install al the project dependencies with `npm install`;
 - Start the development server with `npm start`.
 
+**Obs: Since this app was created with the newly released npm version 7, it creates a package-lock.json version 2, that may cause some problems if you don't have this npm version. In this case you should install and start the app with `yarn install` and `yarn start`. [Here are the instructions to install yarn](https://yarnpkg.com/getting-started/install)**
+
 ### Contributions
 
 Any contributtions and/or suggestions are greatly appreciated.
