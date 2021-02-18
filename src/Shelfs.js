@@ -2,6 +2,11 @@ import React from "react";
 import Book from "./Book";
 import PropTypes from "prop-types";
 
+/**
+ * Component that handles all of the shelfs and renders it.
+ *
+ * @component
+ */
 function Shelfs(props) {
   return (
     <div>
@@ -82,7 +87,13 @@ function Shelfs(props) {
 }
 
 Shelfs.propTypes = {
+  /**
+   * The array of books that are on the shelf
+   */
   booksArray: PropTypes.array.isRequired,
+  /**
+   * The function that updates the shelf when the user moves the book. ---- Will be passed to ShelfsControl component.
+   */
   updateShelf: PropTypes.func.isRequired,
 };
 

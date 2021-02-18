@@ -6,7 +6,13 @@ import Search from "./Search";
 import Shelfs from "./Shelfs";
 import { Route } from "react-router-dom";
 
-function BooksApp() {
+/**
+ * Main component of the application
+ *
+ * @component
+ * )
+ */
+function App() {
   const [didMount, setDidMount] = useState(false);
   const [booksArray, handleBooks] = useState([]);
   useEffect(() => {
@@ -16,6 +22,12 @@ function BooksApp() {
     });
   }, []);
 
+  /**
+   * Updates the shelfs when an user moves the book ----------- Used in the ShelfsControl component.
+   * @param   {object} bookToUpdate The book that will have it's shelf updated.
+   * @param   {string} shelfToUpdate The destination's shelf.
+   * @return  {undefined} Only updates the shelfs, does not return anything.
+   */
   const updateBookShelf = async (bookToUpdate, shelfToUpdate) => {
     await BooksAPI.update(bookToUpdate, shelfToUpdate).then(
       async (updatedShelf) => {
@@ -58,4 +70,4 @@ function BooksApp() {
   );
 }
 
-export default BooksApp;
+export default App;
