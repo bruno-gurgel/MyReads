@@ -1,12 +1,14 @@
+![MyReads Banner](./src/assets/myreads-banner.png)
+
 # MyReads App
 
 This project was made during [Udacity's React Nanodegree](https://www.udacity.com/course/react-nanodegree--nd019) and it is a bookshelf app that allows you to select and categorize books you have read, are currently reading, or want to read.
 
-![MyReads home screen](./src/gifs/MyReads-main.gif)
+![MyReads home screen](./src/assets/MyReads-main.gif)
 
 ### There is also a Search feature so you can add books to your bookshelfs.
 
-![MyReads search screen](./src/gifs/MyReads-search.gif)
+![MyReads search screen](./src/assets/MyReads-search.gif)
 
 ## React is the focus
 
