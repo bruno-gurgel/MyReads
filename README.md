@@ -1,5 +1,7 @@
 ![MyReads Banner](./src/assets/myreads-banner.png)
 
+ ![Repo Size](https://img.shields.io/github/repo-size/bruno-gurgel/MyReads) ![Last commit](https://img.shields.io/github/last-commit/bruno-gurgel/MyReads) ![Top Language](https://img.shields.io/github/languages/top/bruno-gurgel/myreads)
+
 # MyReads App
 
 This project was made during [Udacity's React Nanodegree](https://www.udacity.com/course/react-nanodegree--nd019) and it is a bookshelf app that allows you to select and categorize books you have read, are currently reading, or want to read.
