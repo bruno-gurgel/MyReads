@@ -11,6 +11,8 @@ import * as BooksAPI from "./BooksAPI";
  * )
  */
 function Search(props) {
+  const { booksArray, updateShelf } = props;
+
   const [query, updateQuery] = useState("");
   const [booksResultsArray, updateBooksResultsArray] = useState([]);
   const [areThereResults, updateAreThereResults] = useState(true);
@@ -40,9 +42,7 @@ function Search(props) {
    * @return  {string}        The shelf of the book. It will be 'none' if they have no shelf.
    */
   const checkShelf = (book) => {
-    return (
-      props.booksArray?.find((item) => item.id === book.id)?.shelf ?? "none"
-    );
+    return booksArray?.find((item) => item.id === book.id)?.shelf ?? "none";
   };
 
   return (
@@ -75,7 +75,7 @@ function Search(props) {
                     bookAuthor={book.authors || ""}
                     shelf={bookShelf}
                     book={book}
-                    updateShelf={props.updateShelf}
+                    updateShelf={updateShelf}
                   />
                 </li>
               );

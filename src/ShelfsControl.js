@@ -7,6 +7,8 @@ import PropTypes from "prop-types";
  * @component
  */
 function ShelfsControl(props) {
+  const { book, shelf, updateShelf } = props;
+
   const [options] = useState([
     {
       name: "Move to...",
@@ -41,14 +43,13 @@ function ShelfsControl(props) {
    */
   const handleShelfControl = (event) => {
     const shelf = event.target.value;
-    const book = props.book;
 
-    props.updateShelf(book, shelf);
+    updateShelf(book, shelf);
   };
 
   return (
     <div className="book-shelf-changer">
-      <select onChange={handleShelfControl} value={props.shelf}>
+      <select onChange={handleShelfControl} value={shelf}>
         {options.map((option, index) => (
           <option key={index} value={option.value} disabled={option.disabled}>
             {option.name}

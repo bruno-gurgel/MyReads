@@ -8,6 +8,14 @@ import PropTypes from "prop-types";
  * @component
  */
 function Book(props) {
+  const {
+    backgroundURL,
+    shelf,
+    book,
+    updateShelf,
+    bookTitle,
+    bookAuthor,
+  } = props;
   return (
     <div className="book">
       <div className="book-top">
@@ -16,17 +24,13 @@ function Book(props) {
           style={{
             width: 128,
             height: 193,
-            backgroundImage: `url(${props.backgroundURL})`,
+            backgroundImage: `url(${backgroundURL})`,
           }}
         ></div>
-        <ShelfsControl
-          shelf={props.shelf}
-          book={props.book}
-          updateShelf={props.updateShelf}
-        />
+        <ShelfsControl shelf={shelf} book={book} updateShelf={updateShelf} />
       </div>
-      <div className="book-title">{props.bookTitle}</div>
-      <div className="book-authors">{props.bookAuthor}</div>
+      <div className="book-title">{bookTitle}</div>
+      <div className="book-authors">{bookAuthor}</div>
     </div>
   );
 }
